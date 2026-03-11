@@ -1,5 +1,9 @@
-FROM python:3.15-rc-trixie
-RUN mkdir -p /app
+FROM golang:1.25-alpine AS builder
 WORKDIR /app
-COPY . /app
-CMD [ "python", "main.py"]
+COPY main.go .
+RUN go build -o hello main.go
+
+FROM alpine:3.23
+WORKDIR /app
+COPY --from=builder /app/hello .
+ENTRYPOINT ["./hello"]

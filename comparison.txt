@@ -1,0 +1,2 @@
+The image size without alpine run steps is 1.02 GB.
+The image size with only alpine run steps is 16.04 MB.
